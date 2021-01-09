@@ -36,19 +36,19 @@ while True:
 
             if(dataReceived!=''):
                 print("abc")
-                ser = "ABCD" # ttyACM1 for Arduino board
+                # ser = "ABCD" # ttyACM1 for Arduino board
                 cursor = mydb.cursor()
-                value = (sn,ser)
+                value = (sn,dataReceived)
                 query = "INSERT INTO timbangan (sn,sensor) VALUES (%s,%s)"
                 cursor.execute(query,value)
                 print("Inserted",cursor.rowcount,"row(s) of data.")
                 mydb.commit()
                 data = {'sn': sn,
-                        'inputan': dataReceived,
+                        'sensor': dataReceived,
                         }
                 post =requests.get('http://smart-gh.com/input.php?sn=2020060001', params=data)
                 if post.status_code == 200:
-                    print('Data Monitoring has been sent to Database Server')
+                    print('Data Weightbridge has been sent to Database Server')
                 elif post.status_code == 404:
                     print('Not Found. \n')
                 elif post.status_code == 500:
