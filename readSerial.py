@@ -38,8 +38,8 @@ while True:
                 print("abc")
                 ser = "ABCD" # ttyACM1 for Arduino board
                 cursor = mydb.cursor()
-                value = (ser,'123')
-                query = "INSERT INTO timbangan (inputan,sensor) VALUES (%s,%s)"
+                value = (sn,ser)
+                query = "INSERT INTO timbangan (sn,sensor) VALUES (%s,%s)"
                 cursor.execute(query,value)
                 print("Inserted",cursor.rowcount,"row(s) of data.")
                 mydb.commit()
