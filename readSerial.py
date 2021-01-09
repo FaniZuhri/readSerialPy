@@ -7,10 +7,10 @@ import time
 
 mydb = mysql.connector.connect(
     host='localhost', #hostname
-    user='root', #username
-    passwd='', #password
+    user='smartgh', #username
+    passwd='**hydr0p0n1c##', #password
     database='smartgh_pemantauan') #database name'
-print(mydb)
+# print(mydb)
 
 ser = serial.Serial('/dev/ttyUSB0', 9600, timeout = 1) # ttyACM1 for Arduino board
 
@@ -36,14 +36,13 @@ while True:
 
             if(dataReceived!=''):
                 print("abc")
-                mycursor = mydb.cursor()
-                sql ="INSERT INTO timbangan (inputan) VALUES (%s)"
-                val = (dataReceived)
-                mycursor.execute(sql, val)
-                print(sql)
-                print(val)
+                ser = "ABCD" # ttyACM1 for Arduino board
+                cursor = mydb.cursor()
+                value = (ser,'123')
+                query = "INSERT INTO timbangan (inputan,sensor) VALUES (%s,%s)"
+                cursor.execute(query,value)
+                print("Inserted",cursor.rowcount,"row(s) of data.")
                 mydb.commit()
-
                 data = {'sn': sn,
                         'inputan': dataReceived,
                         }
