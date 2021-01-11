@@ -20,7 +20,7 @@ print ("Starting up")
 connected = False
 commandToSend = 1 # get the distance in mm
 
-sn = "2020060001"
+sn = "2021010011"
 
 while True:
     print ("Writing: ",  commandToSend)
@@ -45,7 +45,7 @@ while True:
                 data = {'sn': sn,
                         'value': dataReceived,
                         }
-                post =requests.get('http://smart-gh.com/input.php?sn=2020060001', params=data)
+                post =requests.get('http://smart-gh.com/inputt.php?sn=2020060001', params=data)
                 if post.status_code == 200:
                     print('Data Weightbridge has been sent to Database Server')
                 elif post.status_code == 404:
