@@ -26,6 +26,7 @@ while True:
     print ("Writing: ",  commandToSend)
     ser.write(str(commandToSend).encode())
     time.sleep(1)
+    commandToSend += 1
     while True:
         try:
             print ("Attempt to Read")
@@ -35,16 +36,14 @@ while True:
             print ("Reading: ", dataReceived)
 
             if(dataReceived!=''):
-                print("abc")
-                # ser = "ABCD" # ttyACM1 for Arduino board
                 cursor = mydb.cursor()
                 value = (sn,dataReceived)
-                query = "INSERT INTO timbangan (sn,sensor) VALUES (%s,%s)"
+                query = "INSERT INTO timbangan (sn,value) VALUES (%s,%s)"
                 cursor.execute(query,value)
                 print("Inserted",cursor.rowcount,"row(s) of data.")
                 mydb.commit()
                 data = {'sn': sn,
-                        'sensor': dataReceived,
+                        'value': dataReceived,
                         }
                 post =requests.get('http://smart-gh.com/input.php?sn=2020060001', params=data)
                 if post.status_code == 200:
