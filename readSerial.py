@@ -45,7 +45,7 @@ while True:
                 data = {'sn': sn,
                         'value': dataReceived,
                         }
-                post =requests.get('http://smart-gh.com/inputt.php?sn=2020060001', params=data)
+                post =requests.get('http://smart-gh.com/inputt.php?sn=2021010011', params=data)
                 if post.status_code == 200:
                     print('Data Weightbridge has been sent to Database Server')
                 elif post.status_code == 404:
