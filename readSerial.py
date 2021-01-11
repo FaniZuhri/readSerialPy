@@ -30,8 +30,8 @@ while True:
     while True:
         try:
             print ("Attempt to Read")
-            readOut = ser.readline().decode('utf-8')
-            dataReceived = str(readOut)
+            dataReceived = ser.readline().decode('utf-8')
+            dataReceived = str(dataReceived)
             time.sleep(1)
             print ("Reading: ", dataReceived)
 
